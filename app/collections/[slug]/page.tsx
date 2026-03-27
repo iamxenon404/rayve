@@ -1,4 +1,5 @@
-import ProductCard from "@/components/product/ProductCard";
+// import ProductCard from "@/components/product/ProductCard";
+import ProductCard from "@/app/components/product/ProductCard";
 import { getProducts } from "@/lib/shopify";
 
 export default async function CollectionDetail({ params }: { params: { slug: string } }) {
@@ -19,7 +20,7 @@ export default async function CollectionDetail({ params }: { params: { slug: str
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
         {filteredProducts.map((product) => (
-          <ProductCard 
+          <ProductCard
             key={product.id}
             slug={product.slug}
             name={product.name}
