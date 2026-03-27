@@ -3,7 +3,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { ShoppingBag, Menu } from "lucide-react";
 import CartDrawer from "../cart/CartDrawer";
-import { useCart } from "@/store/useCart";
+import { useCart } from "@/app/store/useCart";
+// import { useCart } from "@/store/useCart";
 
 export default function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
