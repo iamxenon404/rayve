@@ -1,6 +1,7 @@
 "use client";
+import { useCart } from "@/app/store/useCart";
 import { motion, AnimatePresence } from "framer-motion";
-import { useCart } from "@/store/useCart";
+// import { useCart } from "@/store/useCart";
 import { X, Trash2 } from "lucide-react";
 import Image from "next/image";
 
