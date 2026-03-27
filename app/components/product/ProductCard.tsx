@@ -26,6 +26,22 @@ export default function ProductCard({ slug, name, price, image }: ProductProps) 
         </div>
         <p className="text-sm font-medium">${price}</p>
       </div>
+      // Inside ProductCard component...
+<div className="relative aspect-[3/4] overflow-hidden bg-zinc-900">
+  <Image
+    src={image}
+    alt={name}
+    fill
+    className="object-cover transition-opacity duration-500 group-hover:opacity-0"
+  />
+  {/* The Hover Image - Optional */}
+  <Image
+    src="/sample-product-alt.jpg" 
+    alt={`${name} alt`}
+    fill
+    className="object-cover absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+  />
+</div>
     </Link>
   );
 }
