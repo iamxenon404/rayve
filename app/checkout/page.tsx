@@ -1,7 +1,8 @@
 "use client";
-import { useCart } from "@/store/useCart";
+// import { useCart } from "@/store/useCart";
 import Image from "next/image";
 import Link from "next/link";
+import { useCart } from "../store/useCart";
 
 export default function CheckoutPage() {
   const { cart } = useCart();
