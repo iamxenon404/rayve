@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Archivo } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/layout/Navbar";
+import NewsletterModal from "./components/ui/NewsletterModal";
 // import Navbar from "@/components/layout/Navbar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -19,6 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="bg-brand-black text-brand-white">
+      <NewsletterModal />
       <body className={`${inter.variable} ${archivo.variable} antialiased`}>
         <Navbar />
         <main className="min-h-screen">{children}</main>
