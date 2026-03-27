@@ -1,11 +1,12 @@
 // import ProductCard from "@/components/product/ProductCard";
 
+import Hero from "./components/layout/Hero";
 import ProductCard from "./components/product/ProductCard";
 
 export default function Home() {
   return (
     <div className="pt-16">
-     
+      <Hero />
       {/* Featured Grid */}
       <section className="max-w-7xl mx-auto px-6 py-20">
         <h2 className="text-xl uppercase font-bold mb-10 tracking-widest">Featured</h2>
