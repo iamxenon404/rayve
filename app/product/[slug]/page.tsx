@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
-import { useCart } from "@/store/useCart";
+// import { useCart } from "@/store/useCart";
 import Image from "next/image";
+import { useCart } from "@/app/store/useCart";
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const [selectedSize, setSelectedSize] = useState("");
