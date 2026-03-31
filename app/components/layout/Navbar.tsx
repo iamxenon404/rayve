@@ -78,14 +78,13 @@ export default function Navbar() {
                     {link.items && <ChevronDown size={10} className="opacity-50" />}
                   </Link>
 
-                  {/* DROPDOWN: Attached to bottom of header */}
+                  {/* DESKTOP DROPDOWN (Bottom of Header) */}
                   <AnimatePresence>
                     {link.items && activeDropdown === link.name && (
                       <motion.div
                         initial={{ opacity: 0, y: 0 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
-                        // top-full makes it start exactly at the bottom of the <nav>
                         className="absolute top-full left-0 w-48 bg-brand-black border-x border-b border-white/10 shadow-2xl py-4 flex flex-col"
                       >
                         {link.items.map((item) => (
@@ -108,7 +107,7 @@ export default function Navbar() {
           {/* CENTER: Brand Logo */}
           <Link 
             href="/" 
-            className="absolute left-1/2 -translate-x-1/2 text-2xl font-display font-bold tracking-tighter uppercase"
+            className="absolute left-1/2 -translate-x-1/2 text-2xl font-display font-bold tracking-tighter uppercase text-white"
           >
             Rayve
           </Link>
@@ -117,7 +116,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             <button 
               onClick={() => setIsCartOpen(true)}
-              className="p-2 hover:bg-white/10 rounded-full transition relative"
+              className="p-2 hover:bg-white/10 rounded-full transition relative text-white"
             >
               <ShoppingBag size={20} />
               {cartCount > 0 && (
@@ -130,29 +129,70 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Drawer remains the same */}
+      {/* MOBILE MENU: SLIDES FROM BOTTOM */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div 
-            initial={{ x: "-100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "-100%" }}
-            className="fixed inset-0 z-[60] bg-brand-black p-8 flex flex-col"
-          >
-            <div className="flex justify-between items-center mb-16">
-              <span className="text-xl font-display font-bold uppercase tracking-tighter">Rayve</span>
-              <button onClick={() => setIsMenuOpen(false)} className="p-2">
-                <X size={24} />
-              </button>
-            </div>
-            <div className="flex flex-col gap-8">
-              {navLinks.map((link) => (
-                <Link key={link.name} href={link.href} onClick={() => setIsMenuOpen(false)} className="text-4xl font-display font-bold uppercase tracking-tighter hover:text-brand-accent transition-colors">
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
+          <>
+            {/* Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMenuOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55]"
+            />
+            
+            {/* Menu Panel */}
+            <motion.div 
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed bottom-0 left-0 right-0 z-[60] bg-brand-black border-t border-white/10 p-8 pt-12 rounded-t-[2rem] max-h-[85vh] overflow-y-auto shadow-[0_-10px_40px_rgba(0,0,0,0.5)]"
+            >
+              {/* Grab handle for visual cue */}
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-12 h-1 bg-white/20 rounded-full" />
+              
+              <div className="flex justify-between items-center mb-12">
+                <span className="text-xl font-display font-bold uppercase tracking-tighter text-white">Rayve</span>
+                <button onClick={() => setIsMenuOpen(false)} className="p-2 bg-white/5 rounded-full">
+                  <X size={20} />
+                </button>
+              </div>
+              
+              <div className="flex flex-col gap-6">
+                {navLinks.map((link) => (
+                  <div key={link.name} className="flex flex-col gap-4">
+                    <Link 
+                      href={link.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-4xl font-display font-bold uppercase tracking-tighter hover:text-brand-accent transition-colors text-white"
+                    >
+                      {link.name}
+                    </Link>
+                    {link.items && (
+                      <div className="flex flex-wrap gap-4 pl-1">
+                        {link.items.map((item) => (
+                          <Link 
+                            key={item.name} 
+                            href={item.href}
+                            onClick={() => setIsMenuOpen(false)}
+                            className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-16 border-t border-white/10 pt-8 text-zinc-600 text-[9px] uppercase tracking-[0.2em] text-center">
+                © 2024 Rayve Studio. Built for the streets.
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 
