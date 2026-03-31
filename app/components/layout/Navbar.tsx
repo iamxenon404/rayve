@@ -11,7 +11,7 @@ export default function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   
   const cartCount = useCart((state) => state.cart.length);
 
