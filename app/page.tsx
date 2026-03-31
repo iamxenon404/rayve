@@ -1,25 +1,27 @@
-// import ProductCard from "@/components/product/ProductCard";
+// import Hero from "./components/layout/Hero";
+// import Marquee from "./components/home/Marquee";
+// import FeaturedGrid from "./components/home/FeaturedGrid";
+// import EditorialBento from "./components/home/EditorialBento";
+// import Newsletter from "./components/home/Newsletter";
+// import Hero from "../components/layout/Hero";
+// import Marquee from "../components/home/Marquee";
+// import FeaturedDrop from "../components/home/FeaturedDrop";
+// import EditorialBento from "../components/home/EditorialBento";
+// import NewsletterModal from "../components/ui/NewsletterModal";
 
+import EditorialBento from "./components/home/EditorialBento";
+import FeaturedDrop from "./components/home/FeaturedDrop";
+import Marquee from "./components/home/Marquee";
 import Hero from "./components/layout/Hero";
-import ProductCard from "./components/product/ProductCard";
 
 export default function Home() {
   return (
-    <div className="pt-16">
+    <main className="bg-brand-black text-white pt-16">
       <Hero />
-      {/* Featured Grid */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
-        <h2 className="text-xl uppercase font-bold mb-10 tracking-widest">Featured</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <ProductCard
-            slug="heavyweight-tee" 
-            name="Rayve Heavyweight Tee" 
-            price={55} 
-            image="/sample-product.jpg" 
-          />
-          {/* Add more cards here */}
-        </div>
-      </section>
-    </div>
+      <Marquee />
+      <FeaturedDrop/>
+      <EditorialBento />
+      {/* <NewsletterModal /> */}
+    </main>
   );
 }
