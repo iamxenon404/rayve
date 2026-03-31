@@ -26,17 +26,17 @@ export default function Navbar() {
       name: "Shop", 
       href: "/shop",
       items: [
-        { name: "All Products", href: "/shop" },
-        { name: "New Arrivals", href: "/shop/new" },
-        { name: "Best Sellers", href: "/shop/best" },
+        { name: "Hoodies", href: "/shop" },
+        { name: "Sweatpants", href: "/shop" },
+        { name: "Accessories", href: "/shop" },
       ]
     },
     { 
       name: "Collections", 
       href: "/collections",
       items: [
-        { name: "Winter 24", href: "/collections/winter" },
-        { name: "Archive", href: "/collections/archive" },
+        { name: "Winter 26", href: "/collections" },
+        { name: "Archive", href: "/collections" },
       ]
     },
     { name: "The Lab", href: "/the-lab" },
@@ -51,52 +51,61 @@ export default function Navbar() {
             : "bg-transparent border-transparent h-20"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
+        <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
           
-          {/* 1. Desktop Left Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <div 
-                key={link.name}
-                className="h-full flex items-center"
-                onMouseEnter={() => link.items && setActiveDropdown(link.name)}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <Link 
-                  href={link.href} 
-                  className="text-[10px] uppercase tracking-[0.2em] font-bold hover:text-brand-accent transition-colors flex items-center gap-1"
-                >
-                  {link.name}
-                  {link.items && <ChevronDown size={12} className={`transition-transform ${activeDropdown === link.name ? 'rotate-180' : ''}`} />}
-                </Link>
+          {/* LEFT: Mobile Menu Toggle & Desktop Nav */}
+          <div className="flex items-center h-full">
+            <button 
+              className="md:hidden p-2 -ml-2 hover:bg-white/10 rounded-full transition"
+              onClick={() => setIsMenuOpen(true)}
+            >
+              <Menu size={20} />
+            </button>
 
-                {/* Dropdown Menu - Drops from bottom of Nav */}
-                <AnimatePresence>
-                  {link.items && activeDropdown === link.name && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-0 w-48 bg-brand-black border border-white/10 backdrop-blur-xl shadow-2xl py-4 flex flex-col"
-                    >
-                      {link.items.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="px-6 py-3 text-[9px] uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-white/5 transition-all"
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+            <div className="hidden md:flex items-center gap-8 h-full">
+              {navLinks.map((link) => (
+                <div 
+                  key={link.name}
+                  className="relative h-full flex items-center"
+                  onMouseEnter={() => link.items && setActiveDropdown(link.name)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <Link 
+                    href={link.href} 
+                    className="text-[10px] uppercase tracking-[0.2em] font-bold hover:text-brand-accent transition-colors flex items-center gap-1"
+                  >
+                    {link.name}
+                    {link.items && <ChevronDown size={10} className="opacity-50" />}
+                  </Link>
+
+                  {/* DROPDOWN: Attached to bottom of header */}
+                  <AnimatePresence>
+                    {link.items && activeDropdown === link.name && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 0 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        // top-full makes it start exactly at the bottom of the <nav>
+                        className="absolute top-full left-0 w-48 bg-brand-black border-x border-b border-white/10 shadow-2xl py-4 flex flex-col"
+                      >
+                        {link.items.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="px-6 py-3 text-[9px] uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-white/5 transition-all"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* 2. Brand Logo (Absolute Center) */}
+          {/* CENTER: Brand Logo */}
           <Link 
             href="/" 
             className="absolute left-1/2 -translate-x-1/2 text-2xl font-display font-bold tracking-tighter uppercase"
@@ -104,7 +113,7 @@ export default function Navbar() {
             Rayve
           </Link>
 
-          {/* 3. Right Side Icons & Mobile Toggle */}
+          {/* RIGHT: Cart Icon */}
           <div className="flex items-center gap-2">
             <button 
               onClick={() => setIsCartOpen(true)}
@@ -112,63 +121,36 @@ export default function Navbar() {
             >
               <ShoppingBag size={20} />
               {cartCount > 0 && (
-                <span className="absolute top-0 right-0 bg-brand-accent text-[10px] text-black w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                <span className="absolute top-0 right-0 bg-brand-accent text-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
                   {cartCount}
                 </span>
               )}
-            </button>
-
-            <button 
-              className="md:hidden p-2 hover:bg-white/10 rounded-full transition"
-              onClick={() => setIsMenuOpen(true)}
-            >
-              <Menu size={20} />
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Drawer remains the same */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-0 z-[60] bg-brand-black p-8 flex flex-col"
           >
             <div className="flex justify-between items-center mb-16">
               <span className="text-xl font-display font-bold uppercase tracking-tighter">Rayve</span>
-              <button onClick={() => setIsMenuOpen(false)} className="p-2 text-zinc-400">
+              <button onClick={() => setIsMenuOpen(false)} className="p-2">
                 <X size={24} />
               </button>
             </div>
-            
             <div className="flex flex-col gap-8">
               {navLinks.map((link) => (
-                <div key={link.name}>
-                  <Link 
-                    href={link.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-4xl font-display font-bold uppercase tracking-tighter hover:text-brand-accent transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                  {/* Simple mobile sub-links */}
-                  {link.items && (
-                    <div className="mt-4 flex flex-col gap-2 pl-2 border-l border-white/10">
-                       {link.items.map(item => (
-                         <Link key={item.name} href={item.href} onClick={() => setIsMenuOpen(false)} className="text-sm text-zinc-500 uppercase tracking-widest">{item.name}</Link>
-                       ))}
-                    </div>
-                  )}
-                </div>
+                <Link key={link.name} href={link.href} onClick={() => setIsMenuOpen(false)} className="text-4xl font-display font-bold uppercase tracking-tighter hover:text-brand-accent transition-colors">
+                  {link.name}
+                </Link>
               ))}
-            </div>
-
-            <div className="mt-auto border-t border-white/10 pt-8 text-zinc-500 text-[10px] uppercase tracking-[0.2em]">
-              © 2024 Rayve Studio. Engineered for the void.
             </div>
           </motion.div>
         )}
