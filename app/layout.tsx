@@ -3,7 +3,6 @@ import { Inter, Archivo } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/layout/Navbar";
 import NewsletterModal from "./components/ui/NewsletterModal";
-// import Navbar from "@/components/layout/Navbar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const archivo = Archivo({ subsets: ["latin"], variable: "--font-archivo" });
@@ -19,12 +18,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-brand-black text-brand-white">
-      <NewsletterModal />
-      <body className={`${inter.variable} ${archivo.variable} antialiased`}>
+    <html lang="en">
+      {/* The body MUST wrap the NewsletterModal and everything else 
+        to fix that "div cannot be a child of html" error.
+      */}
+      <body className={`${inter.variable} ${archivo.variable} antialiased bg-brand-black text-brand-white`}>
+        <NewsletterModal />
         <Navbar />
-        <main className="min-h-screen">{children}</main>
-        {/* Footer component would go here */}
+        <main className="min-h-screen">
+          {children}
+        </main>
       </body>
     </html>
   );
