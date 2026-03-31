@@ -2,11 +2,12 @@
 // import Marquee from "./components/home/Marquee";
 // import FeaturedGrid from "./components/home/FeaturedGrid";
 // import EditorialBento from "./components/home/EditorialBento";
-import Newsletter from "./components/home/Newsletter";
+// import Newsletter from "./components/home/Newsletter";
 import Hero from "../components/layout/Hero";
 import Marquee from "../components/home/Marquee";
 import FeaturedDrop from "../components/home/FeaturedDrop";
 import EditorialBento from "../components/home/EditorialBento";
+import NewsletterModal from "../components/ui/NewsletterModal";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
       <Marquee />
       <FeaturedDrop/>
       <EditorialBento />
-      <Newsletter />
+      <NewsletterModal />
     </main>
   );
 }
