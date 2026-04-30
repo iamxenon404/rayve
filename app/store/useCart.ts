@@ -7,6 +7,8 @@ interface CartItem {
   price: number;
   size: string;
   quantity: number;
+  image: string; // Add this
+  // size: string;  // Add this while you're at it
 }
 
 interface CartStore {
