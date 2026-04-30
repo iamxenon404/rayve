@@ -1,22 +1,16 @@
-// // import Hero from "./components/layout/Hero";
-// // import Marquee from "./components/home/Marquee";
-// // import FeaturedGrid from "./components/home/FeaturedGrid";
-// // import EditorialBento from "./components/home/EditorialBento";
-// // import Newsletter from "./components/home/Newsletter";
-// import Hero from "../components/layout/Hero";
-// import Marquee from "../components/home/Marquee";
-// import FeaturedDrop from "../components/home/FeaturedDrop";
-// import EditorialBento from "../components/home/EditorialBento";
-// import NewsletterModal from "../components/ui/NewsletterModal";
+// app/the-lab/page.tsx
 
-// export default function Home() {
-//   return (
-//     <main className="bg-brand-black text-white pt-16">
-//       <Hero />
-//       <Marquee />
-//       <FeaturedDrop/>
-//       <EditorialBento />
-//       {/* <NewsletterModal /> */}
-//     </main>
-//   );
-// }
+export default function TheLabPage() {
+  return (
+    <main className="min-h-screen pt-32 bg-black text-white px-6">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-6xl font-display font-bold uppercase tracking-tighter">
+          The Lab
+        </h1>
+        <p className="mt-4 text-zinc-500 uppercase tracking-widest text-xs">
+          Experimental Archive // Loading...
+        </p>
+      </div>
+    </main>
+  );
+}
